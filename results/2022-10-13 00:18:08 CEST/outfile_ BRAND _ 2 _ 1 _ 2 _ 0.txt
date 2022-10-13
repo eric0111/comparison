@@ -1,0 +1,3 @@
+BRAND : SEED= 2 N_FACTOR= 1 p= 2 easy= 0
+SEED	algo	N_FACTOR	p	 easy	elapsed_time_mins	tot_clusters	cluster_found	ARI	FMI	AMI
+2	"BRAND"	0.1	2	0	7.34184355338415	5	5	0.86594014050878	0.892650276925042	0.839473670692404
