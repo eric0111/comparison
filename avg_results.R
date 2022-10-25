@@ -10,18 +10,24 @@ avg_results = function(timestamp){
   
   for (i in 1:length(filenames)){
     temp = read.table(filenames[i], header = FALSE)
-    print(as.vector(temp$V1))
-    data[i,] = as.vector(temp$V1)
+    # print(temp$V1)
+    line =  as.vector(temp$V1)
+    if(line[6] == "MCMC did not converge"){
+      print(line)
+    }
+    else{
+      data[i,] = as.vector(temp$V1)
+    }
   }
-  print("filenames")
-  print(filenames)
-  
-  print("data")
-  print(data)
+  # print("filenames")
+  # print(filenames)
+  # 
+  # print("data")
+  # print(data)
   
   combinations = unique(data[,c('algo','N_FACTOR', 'p','easy')])
-  print("combinations")
-  print(combinations)
+  # print("combinations")
+  # print(combinations)
   
   report <- data.frame(matrix(ncol = 13, nrow = nrow(combinations)))
   
@@ -30,9 +36,9 @@ avg_results = function(timestamp){
   i= 1 
   while(i <= nrow(combinations)){
     indexes = which((data$algo == combinations$algo[i]) & (data$N_FACTOR == combinations$N_FACTOR[i]) & (data$p == combinations$p[i]) & (data$easy == combinations$easy[i]))
-    print("indexes")
-    print(indexes)
-    
+    # print("indexes")
+    # print(indexes)
+    # 
     report[i,1] = nrow(data[indexes,])
     report[i,2:5] = combinations[i,1:4]
     report[i,6] = mean(as.numeric(data[indexes,6]))
@@ -48,8 +54,8 @@ avg_results = function(timestamp){
     i=i+1
   }
   
-  print("report")
-  print(report)
+  # print("report")
+  # print(report)
   
   #setwd('C:/Users/user/Desktop/VariationalBRAND-cpp/tests/varbrand')
   report_filename = paste('report','_',timestamp,'.csv',sep = "")
@@ -88,7 +94,8 @@ avg_results = function(timestamp){
 # }
 
 #avg_results("00:00-test")
-
+# setwd("/home/eb/Desktop/data")
+# avg_results("final")
 
 
 
